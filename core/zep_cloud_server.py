@@ -14,6 +14,9 @@ from dotenv import load_dotenv
 from fastmcp import FastMCP
 from typing import Optional, Dict, Any, Union
 
+# Define dependencies at module level
+dependencies = ["requests", "python-dotenv", "fastmcp"]
+
 # Set up logging
 logging.basicConfig(
     level=logging.INFO,
@@ -26,6 +29,9 @@ load_dotenv()
 
 # Initialize FastMCP
 mcp = FastMCP()
+
+# Dependencies required by this server
+dependencies = ["requests", "python-dotenv"]
 
 # Track the number of tools registered
 tool_count = 0
@@ -360,6 +366,13 @@ try:
         test_users = client.list_users()
         fallback_mode = test_users is None or len(test_users) == 0
         
+    # Add debug logging to understand why fallback mode is being set
+    logger.info(f"Fallback mode determination: hasattr(client, 'fallback_mode')={hasattr(client, 'fallback_mode')}")
+    if not hasattr(client, 'fallback_mode'):
+        logger.info(f"test_users is None: {test_users is None}")
+        if test_users is not None:
+            logger.info(f"test_users length: {len(test_users)}")
+    
     if fallback_mode:
         logger.warning("⚠️ Zep Cloud client is running in fallback mode. Operations will be simulated.")
     else:
