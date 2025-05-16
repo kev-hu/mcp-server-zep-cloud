@@ -1,0 +1,18 @@
+version: "1"
+command: ["python", "core/run_server.py"]
+healthcheck:
+  enabled: true
+  endpoint: /health
+  timeout: 5s
+environment:
+  - ZEP_API_KEY
+securityProfile: standard
+configSchema:
+  type: object
+  required:
+    - ZEP_API_KEY
+  properties:
+    ZEP_API_KEY:
+      type: string
+      title: Zep Cloud API Key
+      description: Your API key for accessing the Zep Cloud service
