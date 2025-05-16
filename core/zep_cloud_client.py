@@ -38,6 +38,8 @@ class ZepCloudClient:
     def __init__(self):
         """Initialize the Zep Cloud client"""
         self.api_key = os.getenv("ZEP_API_KEY")
+        # Add fallback_mode attribute explicitly
+        self.fallback_mode = False
         
         if not self.api_key:
             raise ValueError("ZEP_API_KEY environment variable not set")

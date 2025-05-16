@@ -38,5 +38,5 @@ fi
 # Run the server
 echo "Starting Zep Cloud MCP Server..."
 
-# Run the server in development mode using the file from the core directory
-fastmcp dev core/zep_cloud_server.py 
+# Use direct Python execution instead of fastmcp dev
+python core/run_server.py 
