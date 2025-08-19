@@ -8,13 +8,13 @@ PROJECT_DIR="$(dirname "$SCRIPT_DIR")"
 
 # Check if virtual environment exists and activate it
 if [ -f "$PROJECT_DIR/venv/bin/activate" ]; then
-    echo "Activating virtual environment..."
+    echo "Activating virtual environment..." >&2
     source "$PROJECT_DIR/venv/bin/activate"
 elif [ -f "$PROJECT_DIR/.venv/bin/activate" ]; then
-    echo "Activating virtual environment (.venv)..."
+    echo "Activating virtual environment (.venv)..." >&2
     source "$PROJECT_DIR/.venv/bin/activate"
 else
-    echo "Warning: No virtual environment found. Using system Python."
+    echo "Warning: No virtual environment found. Using system Python." >&2
 fi
 
 # Change to project directory to ensure relative imports work
